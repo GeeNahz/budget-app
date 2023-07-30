@@ -114,6 +114,7 @@ def indexView(request):
     ).order_by("-created_at")[:5]
 
     total_budgets = budgets.count()
+    budgets = budgets.order_by("-created_at")[:4]
     total_contexts = ctx.count()
     context = {
         "budgets": budgets,
