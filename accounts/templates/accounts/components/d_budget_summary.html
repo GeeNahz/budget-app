@@ -1,0 +1,87 @@
+{% extends 'accounts/components/card_container.html' %}
+
+
+{% block card_title %}Your budgets{% endblock %}
+
+{% block card_content %}
+<table class="table-auto border-collapse border-b border-slate-300 w-full bg-slate-50 min-h-full max-h-80 relative">
+    <thead class="bg-white">
+        <tr>
+            <th class="border-b border-slate-300 text-start py-2 p-3 text-xs">S/N</th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs">Name</th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs">Date created</th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs"></th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs"></th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for budget in budgets %}
+        {% if forloop.counter|divisibleby:'2' %}
+        <tr class="bg-white text-slate-500">
+            <td class="text-start py-2 px-4 text-sm">{{ forloop.counter }}</td>
+            <td class="text-start py-2 px-4 text-sm">{{ budget.name }}</td>
+            <!-- <td class="text-start py-2 px-4 text-sm">{{ budget.projected_total_income }}</td>
+                    <td class="text-start py-2 px-4 text-sm">{{ budget.actual_total_income }}</td> -->
+            <td class="text-start py-2 px-4 text-sm"><time>{{ budget.created_at }}</time></td>
+
+            <td class="text-end py-2 px-4 text-sm">
+                <a href="{% url 'accounts:budget' pk=budget.id %}"
+                    class="view transition-all text-blue-500 hover:text-blue-400 font-semibold py-1 px-3 flex items-center justify-end">{% heroicon_solid 'plus' size=18 class='mr-1' %}View</a>
+            </td>
+            <td class="text-end py-2 px-4 text-sm">
+                <a href="{% url 'accounts:edit-budget' pk=budget.id %}"
+                    class="edit transition-all text-green-500 hover:text-green-400 font-semibold py-1 px-3 flex items-center justify-end">{% heroicon_solid 'pencil-square' size=18 class='mr-1' %}Edit</a>
+            </td>
+            <td class="text-end py-2 px-4 text-sm">
+                <a href="#"
+                    class="delete transition-all text-red-500 hover:text-red-400 font-semibold py-1 px-3 flex items-center justify-end">{% heroicon_solid 'x-mark' size=18 class='mr-1' %}Delete</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr class="bg-slate-100 text-slate-500">
+            <td class="text-start py-2 px-4 text-sm">{{ forloop.counter }}</td>
+            <td class="text-start py-2 px-4 text-sm">{{ budget.name }}</td>
+            <!-- <td class="text-start py-2 px-4 text-sm">{{ budget.projected_total_income }}</td>
+                    <td class="text-start py-2 px-4 text-sm">{{ budget.actual_total_income }}</td> -->
+            <td class="text-start py-2 px-4 text-sm"><time>{{ budget.created_at }}</time></td>
+
+            <td class="text-end py-2 px-4 text-sm">
+                <a href="{% url 'accounts:budget' pk=budget.id %}"
+                    class="view transition-all text-blue-500 hover:text-blue-400 font-semibold py-1 px-3 flex items-center justify-end">{% heroicon_solid 'plus' size=18 class='mr-1' %}View</a>
+            </td>
+            <td class="text-end py-2 px-4 text-sm">
+                <a href="{% url 'accounts:edit-budget' pk=budget.id %}"
+                    class="edit transition-all text-green-500 hover:text-green-400 font-semibold py-1 px-3 flex items-center justify-end">{% heroicon_solid 'pencil-square' size=18 class='mr-1' %}Edit</a>
+            </td>
+            <td class="text-end py-2 px-4 text-sm">
+                <a href="#"
+                    class="delete transition-all text-red-500 hover:text-red-400 font-semibold py-1 px-3 flex items-center justify-end">{% heroicon_solid 'x-mark' size=18 class='mr-1' %}Delete</a>
+            </td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock card_content %}
+
+{% block card_actions %}
+<div class="w-full overflow-hidden flex justify-between items-center">
+    <div class="info text-slate-600">
+        <p class="text-xs font-light bg-red-200">
+            Showing top 10 recent budgets
+        </p>
+    </div>
+
+    <div class="pagination border rounded-md p-0 w-fit flex h-8 text-sm overflow-hidden">
+        <a href="#"
+            class="h-full flex items-center p-3 font-medium text-slate-500 border-r hover:bg-slate-200 transition-all">Previous</a>
+
+        <a href="#"
+            class="current-page h-full flex items-center p-3 bg-emerald-400 text-slate-50 font-semibold transition-all">2</a>
+
+        <a href="#"
+            class="h-full flex items-center p-3 font-medium text-slate-500 border-l hover:bg-slate-200 transition-all">Next</a>
+    </div>
+</div>
+{% endblock card_actions %}

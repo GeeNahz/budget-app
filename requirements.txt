@@ -1,0 +1,5 @@
+asgiref==3.7.2
+Django==4.2.3
+heroicons==2.4.0
+mysqlclient==1.4.6
+sqlparse==0.4.4

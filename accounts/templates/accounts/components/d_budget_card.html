@@ -1,0 +1,11 @@
+<a href="{% url 'accounts:budget' pk=budget.id %}" class="flex flex-col gap-5 bg-slate-100 rounded-md p-3 min-w-[150px] h-max hover:shadow transition-all">
+    <div class="budget-title text-slate-500 font-semibold">
+        {{ budget.name }}
+    </div>
+
+    <div class="budget-details">
+        <p class="title uppercase font-semibold text-slate-300 text-sm">Budget</p>
+
+        <p class="amount font-bold text-slate-700 text-2xl">${{ budget.projected_total_income }}</p>
+    </div>
+</a>

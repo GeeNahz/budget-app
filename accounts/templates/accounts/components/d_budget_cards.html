@@ -1,0 +1,20 @@
+{% extends 'accounts/components/card_container.html' %}
+
+
+{% block card_title %}
+Budgets
+{% endblock card_title %}
+
+{% block card_content %}
+<div class="flex flex-wrap items-start gap-3 font-lato">
+    {% for budget in budgets %}
+    {% include 'accounts/components/d_budget_card.html' with budget=budget %}
+    {% endfor %}
+</div>
+{% endblock card_content %}
+
+{% block card_actions %}
+<div class="w-full text-end">
+    <a href="{% url 'accounts:budgets' %}" class="h-full py-2 px-3 font-medium rounded text-slate-500 underline hover:bg-slate-200 hover:text-slate-600 transition-all">View all</a>
+</div>
+{% endblock card_actions %}

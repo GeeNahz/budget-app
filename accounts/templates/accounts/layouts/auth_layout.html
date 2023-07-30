@@ -1,0 +1,15 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<div class="container mx-auto min-h-screen flex justify-center items-center">
+    <div class="wrapper rounded border p-10">
+        <div class="prose my-10 text-center flex flex-col">
+            <h1 class="order-1">
+                {% block auth_title %}Default title{% endblock %}
+            </h1>
+            <p class="font-medium">Budge<span class="text-emerald-500">Life</span></p>
+        </div>
+        {% block auth_card %}{% endblock %}
+    </div>
+</div>
+{% endblock content %}

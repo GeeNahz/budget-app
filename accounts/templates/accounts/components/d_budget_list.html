@@ -1,0 +1,12 @@
+<div class="w-full px-3 py-3 bg-slate-50 rounded grid grid-cols-3 place-content-stretch items-center shadow text-sm">
+    <p class="title font-medium">{{ budget.name }}</p>
+
+    <time class="date w-fill text-end">
+        {{ budget.created_at }}
+    </time>
+
+    <div class="action flex gap-3 items-center justify-end">
+        <a href="{% url 'accounts:edit-budget' pk=budget.id %}" class="edit transition-all text-blue-500 hover:text-blue-400 font-semibold py-1 px-3">Edit</a>
+        <a href="#" class="delete transition-all text-red-500 hover:text-red-400 font-semibold py-1 px-3">Delete</a>
+    </div>
+</div>

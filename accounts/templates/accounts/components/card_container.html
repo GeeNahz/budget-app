@@ -1,0 +1,18 @@
+<div class="shadow rounded-sm bg-white">
+    <div class="top py-3 px-5 border-b border-slate-200">
+        <p class="text-xl text-slate-400 font-medium capitalize">
+            {% block card_title %}
+            {% endblock %}
+        </p>
+    </div>
+
+    <main class="content px-5 py-4 h-max border-b border-slate-200">
+        {% block card_content %}
+        {% endblock %}
+    </main>
+
+    <div class="bottom actions px-5 py-5">
+        {% block card_actions %}
+        {% endblock %}
+    </div>
+</div>

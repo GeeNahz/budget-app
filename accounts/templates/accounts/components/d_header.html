@@ -1,0 +1,23 @@
+<nav class="header px-5 h-16 flex justify-between items-center bg-white shadow">
+    <div class="logo">
+        <p class="text-4xl font-semibold font-sans">
+            Budge<span class="text-emerald-500">Life</span>
+        </p>
+    </div>
+    
+    <div class="flex items-center gap-4">
+        <div class="links flex gap-4 capitalize">
+            <a href="{% url 'accounts:create_budget' %}" title="Create new budget" class="transition-all bg-emerald-500 hover:bg-emerald-400 text-slate-50 font-semibold py-1 px-3 rounded-full shadow shadow-emerald-200 hover:shadow-md hover:shadow-emerald-200">+ New Budget</a>
+        </div>
+    </div>
+
+    <!-- <div class="user flex items-center gap-4">
+        <div class="image h-10 w-10 bg-gray-200 rounded-full"></div>
+
+        <p class="font-medium">
+            Welcome, {{ request.user.get_full_name }}
+        </p>
+
+        <a href="{% url 'accounts:signout' %}" title="Logout" class="transition-all text-red-500 hover:text-red-400 font-semibold py-1 px-3">Sign out</a>
+    </div> -->
+</nav>

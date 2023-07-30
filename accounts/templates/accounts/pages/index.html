@@ -1,0 +1,24 @@
+{% extends 'accounts/layouts/dashboard_layout.html' %}
+
+{% block title %}Home page{% endblock title %}
+
+{% block d_content %}
+<div class="content">
+    <section class="overview mb-10">
+        {% include 'accounts/components/d_overview.html' %}
+    </section>
+    
+    <section class="summary mb-10">
+        <div class="title prose mb-5">
+            <h3>Summary</h3>
+        </div>
+    
+        <div class="budget-summary grid grid-cols-2 items-start gap-5">
+            {% include 'accounts/components/d_budget_cards.html' %}
+    
+            {% include 'accounts/components/d_recent_items.html' %}
+            <!-- TODO 3: Add display for recent tasks created showing their budget price and the name of the budget to which they belong -->
+        </div>
+    </section>
+</div>
+{% endblock d_content %}

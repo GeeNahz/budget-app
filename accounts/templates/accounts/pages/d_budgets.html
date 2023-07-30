@@ -1,0 +1,9 @@
+{% extends 'accounts/layouts/dashboard_layout.html' %}
+
+{% block title %}Budgets{% endblock title %}
+
+{% block d_content %}
+<div class="content space-y-3">
+    {% include 'accounts/components/d_budget_summary.html' %}
+</div>
+{% endblock d_content%}

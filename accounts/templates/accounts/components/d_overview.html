@@ -1,0 +1,20 @@
+{% extends 'accounts/components/card_container.html' %}
+
+
+{% block card_title %}Overview{% endblock card_title %}
+
+{% block card_content %}
+<div class="overview flex gap-5 justify-between">
+    {% include 'accounts/components/d_overview_item.html' with title="total budgets" value=total_budgets  %}
+
+    {% include 'accounts/components/d_overview_item.html' with title="Total budgeted price" value=request.user.profile.total_budgeted_price  %}
+
+    {% include 'accounts/components/d_overview_item.html' with title="total savings" value=request.user.profile.total_savings  %}
+</div>
+{% endblock card_content %}
+
+{% block card_actions %}
+<div class="w-full text-center">
+    <a href="#" class="bg-emerald-500 text-slate-50 py-2 px-4 rounded-full font-bold capitalize shadow-md shadow-emerald-100 hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-200 transition-all">View complete report</a>
+</div>
+{% endblock card_actions %}

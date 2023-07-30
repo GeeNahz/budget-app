@@ -1,0 +1,81 @@
+{% extends 'accounts/components/card_container.html' %}
+
+
+{% block card_title %}
+Recently budgeted items
+{% endblock card_title %}
+
+{% block card_content %}
+<table class="table-auto border-collapse border-b border-slate-300 w-full bg-slate-50 min-h-full max-h-80 relative">
+    <thead class="bg-white">
+        <tr>
+            <th class="border-b border-slate-300 text-start py-2 p-3 text-xs">S/N</th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs">Name</th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs">Date created</th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs"></th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if recent_items %}
+            {% for budget in recent_items %}
+                {% if forloop.counter|divisibleby:'2' %}
+                    <tr class="bg-white text-slate-400">
+                        <td class="text-start py-2 px-4 text-sm">{{ forloop.counter }}</td>
+                        <td class="text-start py-2 px-4 text-sm">{{ budget.name }}</td>
+                        <!-- <td class="text-start py-2 px-4 text-sm">{{ budget.projected_total_income }}</td>
+                                <td class="text-start py-2 px-4 text-sm">{{ budget.actual_total_income }}</td> -->
+                        <td class="text-start py-2 px-4 text-sm"><time>{{ budget.created_at }}</time></td>
+
+                        <td class="text-end py-2 px-4 text-sm">
+                            <a href="{% url 'accounts:edit-budget' pk=budget.id %}"
+                                class="edit transition-all text-blue-500 hover:text-blue-400 font-semibold py-1 px-3">Edit</a>
+                        </td>
+                        <td class="text-end py-2 px-4 text-sm">
+                            <a href="#"
+                                class="delete transition-all text-red-500 hover:text-red-400 font-semibold py-1 px-3">Delete</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr class="bg-slate-100 text-slate-400">
+                        <td class="text-start py-2 px-4 text-sm">{{ forloop.counter }}</td>
+                        <td class="text-start py-2 px-4 text-sm">{{ budget.name }}</td>
+                        <!-- <td class="text-start py-2 px-4 text-sm">{{ budget.projected_total_income }}</td>
+                                <td class="text-start py-2 px-4 text-sm">{{ budget.actual_total_income }}</td> -->
+                        <td class="text-start py-2 px-4 text-sm"><time>{{ budget.created_at }}</time></td>
+
+                        <td class="text-end py-2 px-4 text-sm">
+                            <a href="{% url 'accounts:edit-budget' pk=budget.id %}"
+                                class="edit transition-all text-blue-500 hover:text-blue-400 font-semibold py-1 px-3">Edit</a>
+                        </td>
+                        <td class="text-end py-2 px-4 text-sm">
+                            <a href="#"
+                                class="delete transition-all text-red-500 hover:text-red-400 font-semibold py-1 px-3">Delete</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <tr class="bg-slate-100 text-slate-400">
+                <td class="text-start py-2 px-4 text-sm">You haven't created any item recenlty</td>
+                <td class="text-start py-2 px-4 text-sm"></td>
+                <td class="text-start py-2 px-4 text-sm"></td>
+                <td class="text-start py-2 px-4 text-sm"></td>
+                <td class="text-start py-2 px-4 text-sm"></td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endblock card_content %}
+
+{% block card_actions %}
+<div class="w-full text-end">
+    <a
+        href="{% url 'accounts:budgets' %}"
+        class="h-full py-2 px-3 font-medium rounded text-slate-500 underline hover:bg-slate-200 hover:text-slate-600 transition-all"
+    >
+        View all
+    </a>
+    <span class="bg-red-200 rounded font-medium text-xs px-2">Create items page and route this there</span>
+</div>
+{% endblock card_actions %}

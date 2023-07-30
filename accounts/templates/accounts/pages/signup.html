@@ -1,0 +1,29 @@
+{% extends 'accounts/layouts/auth_layout.html' %}
+{% load static %}
+
+{% block title %}Signup page{% endblock title %}
+
+<!-- user details:
+- username: user
+- password: secretpassword -->
+
+{% block auth_title %}Sign Up{% endblock auth_title %}
+
+{% block auth_card %}
+<form action="" method="post">
+    {% csrf_token %}
+
+    {% for field in form %}
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}" class="text-sm font-medium">{{ field.label }}</label>
+        {{ field }}
+    </div>
+    {% endfor %}
+
+    {% for message in messages %}
+        <p>{{ message }}</p>
+    {% endfor %}
+
+    <input type="submit" value="Sign up" class="w-full my-4 py-2 bg-emerald-500 rounded font-semibold text-slate-50 hover:bg-emerald-400 transition-all active:bg-emerald-600">
+</form>
+{% endblock auth_card %}

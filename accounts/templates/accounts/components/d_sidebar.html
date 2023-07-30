@@ -1,0 +1,30 @@
+<div class="w-full h-full flex flex-col bg-white font-lato">
+    <div class="user-details p-5 order-1 flex items-center justify-start gap-5 border-t">
+        <div class="avatar h-12 w-12 rounded-full bg-slate-200"></div>
+
+        <div class="name flex flex-col">
+            <p class="full-name text-slate-700">
+                {{ request.user.get_full_name }}
+            </p>
+            <p class="username text-slate-400">
+                {{ request.user.username }}
+            </p>
+        </div>
+    </div>
+
+    <nav class="w-full p-5 h-full flex flex-col">
+        <a href="{% url 'accounts:signout' %}" class="order-1 transition-all flex items-center text-red-500 hover:text-red-600 py-3 px-4 hover:bg-slate-200 active:bg-slate-300 rounded-md">{% heroicon_solid 'arrow-right-on-rectangle' size=20 class='mr-2' %}Sign out</a>
+
+        <ul class="text-slate-600 flex-1 font-medium capitalize">
+            <li class="my-2">
+                <a href="{% url 'accounts:index' %}" class="transition-all flex items-center py-3 px-4 hover:bg-slate-200 active:bg-slate-300 rounded-md">{% heroicon_solid 'squares-2x2' size=20 class='mr-2' %}Overview</a>
+            </li>
+            <li class="my-2">
+                <a href="{% url 'accounts:budgets' %}" class="transition-all flex items-center py-3 px-4 hover:bg-slate-200 active:bg-slate-300 rounded-md w-full">{% heroicon_solid 'credit-card' size=20 class='mr-2' %}Budgets</a>
+            </li>
+            <li class="my-1">
+                <a href="#" class="transition-all flex items-center py-3 px-4 hover:bg-slate-200 active:bg-slate-300 rounded-md">{% heroicon_solid 'user' size=20 class='mr-2' %}Profile</a>
+            </li>
+        </ul>
+    </nav>
+</div>
