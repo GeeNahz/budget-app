@@ -10,7 +10,8 @@ Recently budgeted items
     <thead class="bg-white">
         <tr>
             <th class="border-b border-slate-300 text-start py-2 p-3 text-xs">S/N</th>
-            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs">Name</th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs">Name of item</th>
+            <th class="border-b border-slate-300 text-start py-2 px-4 text-xs">Budget</th>
             <th class="border-b border-slate-300 text-start py-2 px-4 text-xs">Date created</th>
             <th class="border-b border-slate-300 text-start py-2 px-4 text-xs"></th>
             <th class="border-b border-slate-300 text-start py-2 px-4 text-xs"></th>
@@ -18,17 +19,17 @@ Recently budgeted items
     </thead>
     <tbody>
         {% if recent_items %}
-            {% for budget in recent_items %}
+            {% for item in recent_items %}
                 {% if forloop.counter|divisibleby:'2' %}
                     <tr class="bg-white text-slate-400">
                         <td class="text-start py-2 px-4 text-sm">{{ forloop.counter }}</td>
-                        <td class="text-start py-2 px-4 text-sm">{{ budget.name }}</td>
-                        <!-- <td class="text-start py-2 px-4 text-sm">{{ budget.projected_total_income }}</td>
-                                <td class="text-start py-2 px-4 text-sm">{{ budget.actual_total_income }}</td> -->
-                        <td class="text-start py-2 px-4 text-sm"><time>{{ budget.created_at }}</time></td>
+                        <td class="text-start py-2 px-4 text-sm">{{ item.name }}</td>
+                        <td class="text-start py-2 px-4 text-sm">{{ item.context.budget.name }}</td>
+                                <!-- <td class="text-start py-2 px-4 text-sm">{{ item.actual_total_income }}</td> -->
+                        <td class="text-start py-2 px-4 text-sm"><time>{{ item.created_at }}</time></td>
 
                         <td class="text-end py-2 px-4 text-sm">
-                            <a href="{% url 'accounts:edit-budget' pk=budget.id %}"
+                            <a href="{% url 'accounts:edit-item' pk=item.id %}"
                                 class="edit transition-all text-blue-500 hover:text-blue-400 font-semibold py-1 px-3">Edit</a>
                         </td>
                         <td class="text-end py-2 px-4 text-sm">
@@ -39,13 +40,13 @@ Recently budgeted items
                 {% else %}
                     <tr class="bg-slate-100 text-slate-400">
                         <td class="text-start py-2 px-4 text-sm">{{ forloop.counter }}</td>
-                        <td class="text-start py-2 px-4 text-sm">{{ budget.name }}</td>
-                        <!-- <td class="text-start py-2 px-4 text-sm">{{ budget.projected_total_income }}</td>
-                                <td class="text-start py-2 px-4 text-sm">{{ budget.actual_total_income }}</td> -->
-                        <td class="text-start py-2 px-4 text-sm"><time>{{ budget.created_at }}</time></td>
+                        <td class="text-start py-2 px-4 text-sm">{{ item.name }}</td>
+                        <td class="text-start py-2 px-4 text-sm">{{ item.context.budget.name }}</td>
+                                <!-- <td class="text-start py-2 px-4 text-sm">{{ item.actual_total_income }}</td> -->
+                        <td class="text-start py-2 px-4 text-sm"><time>{{ item.created_at }}</time></td>
 
                         <td class="text-end py-2 px-4 text-sm">
-                            <a href="{% url 'accounts:edit-budget' pk=budget.id %}"
+                            <a href="{% url 'accounts:edit-item' pk=item.id %}"
                                 class="edit transition-all text-blue-500 hover:text-blue-400 font-semibold py-1 px-3">Edit</a>
                         </td>
                         <td class="text-end py-2 px-4 text-sm">
