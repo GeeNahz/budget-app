@@ -375,6 +375,70 @@ def createContextView(request):
 
 
 @login_required
+def editItemView(request, pk):
+    item = Item.objects.get(pk=pk)
+
+    context_id = request.GET.get("context_id")
+
+    if request.method == "POST":
+        formdata = CreateItemForm(request.POST, instance=item)
+
+        if formdata.is_valid():
+            update = formdata.save()
+
+            budget_id = Item.objects.get(pk=update.id).context.budget.id
+
+            submit_type = str(list(request.POST.dict())[-1])
+
+            match submit_type:
+                case str(SubmitType._save.name):
+                    return HttpResponseRedirect(
+                        reverse_querystring(
+                            view="accounts:budget",
+                            kwargs={"pk": budget_id},
+                        )
+                    )
+                case str(SubmitType._next.name):
+                    return HttpResponseRedirect(
+                        reverse_querystring(
+                            view="accounts:create-context",
+                            query_kwargs={
+                                "budget_id": budget_id,
+                            },
+                        )
+                    )
+                case str(SubmitType._addanother.name):
+                    return (
+                        HttpResponseRedirect(
+                            reverse_querystring(
+                                view="accounts:create-item",
+                                query_kwargs={
+                                    "context_id": context_id,
+                                },
+                            )
+                        )
+                        if context_id is not None
+                        else HttpResponseRedirect(
+                            reverse_querystring(
+                                view="accounts:create-item",
+                            )
+                        )
+                    )
+                case _:
+                    print("Invalid submit option")
+
+    form = CreateItemForm(instance=item)
+
+    data = {"form": form}
+
+    return render(
+        request,
+        "accounts/pages/create_edit_item.html",
+        data,
+    )
+
+
+@login_required
 def createItemView(request):
     context_id = request.GET.get("context_id")
 
