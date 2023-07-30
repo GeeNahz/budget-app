@@ -32,6 +32,11 @@ urlpatterns = [
         views.createItemView,
         name="create-item",
     ),
+    path(
+        "budget/item/<int:pk>/edit/",
+        views.editItemView,
+        name="edit-item",
+    ),
     path("signup/", views.signupView, name="signup"),
     path("signin/", views.signinView, name="signin"),
     path("signout/", views.signoutView, name="signout"),
